@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/pages/products_overview_page.dart';
+import 'package:shop/pages/product_detail.dart';
+import 'package:shop/utils/app_routes.dart';
+
+import 'pages/products_overview_page.dart';
 
 void main() {
-  runApp(const ShopApp());
+  runApp(const MyApp());
 }
 
-class ShopApp extends StatelessWidget {
-  const ShopApp({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Loja',
-      theme: ThemeData(primaryColor: Colors.blue),
+      title: 'My Shop',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          primary: Colors.purple,
+          secondary: Colors.deepOrange,
+        ),
+        fontFamily: 'Lato',
+      ),
       home: ProductsOverviewPage(),
       debugShowCheckedModeBanner: false,
+      routes: {
+        AppRoutes.PRODUCT_DETAIL: (ctx) => ProductDetailPage()
+      },
     );
   }
 }

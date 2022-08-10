@@ -1,9 +1,10 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/product_item.dart';
-import 'package:shop_app/data/dummy_data.dart';
 
+
+import '../components/product_item.dart';
+import '../data/dummy_data.dart';
 import '../models/product.dart';
 
 class ProductsOverviewPage extends StatelessWidget {
