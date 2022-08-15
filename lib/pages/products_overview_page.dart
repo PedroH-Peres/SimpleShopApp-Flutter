@@ -5,10 +5,13 @@ import 'package:provider/provider.dart';
 import 'package:shop/models/product_list.dart';
 
 
+import '../components/badge.dart';
 import '../components/product_grid.dart';
 import '../components/product_item.dart';
 import '../data/dummy_data.dart';
+import '../models/cart.dart';
 import '../models/product.dart';
+import '../utils/app_routes.dart';
 enum FilterOptions {
   Favorite,
   All
@@ -50,6 +53,18 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
               });
             },
           ),
+          Consumer<Cart>(
+            child: IconButton(
+                onPressed: (){
+                  Navigator.of(context).pushNamed(AppRoutes.CART);
+                },
+                icon: Icon(Icons.shopping_cart),
+              ),
+            builder: (ctx, cart, child) => Badge(
+              value: cart.itemsCount.toString(),
+              child: child!,
+            ),
+          )
         ],
       ),
       body: ProductGrid(_showFavoriteOnly),
