@@ -14,7 +14,22 @@ class ProductDetailPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(product.name),
+        title: Text(product.name), 
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(child: Image.network(product.imageUrl, fit: BoxFit.cover,), width: double.infinity, height: 300, ),
+            SizedBox(height: 10),
+            Text('R\$${product.price}', style: TextStyle(color: Colors.grey, fontSize: 20),),
+            SizedBox(height: 10),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              width: double.infinity,
+              child: Text(product.description, textAlign: TextAlign.center,),
+            )
+          ],
+        )
       ),
     );
   }
