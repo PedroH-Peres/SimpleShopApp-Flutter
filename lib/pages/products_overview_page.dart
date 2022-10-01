@@ -8,7 +8,7 @@ import 'package:shop/models/product_list.dart';
 
 import '../components/badge.dart';
 import '../components/product_grid.dart';
-import '../components/product_item.dart';
+import '../components/product_grid_item.dart';
 import '../data/dummy_data.dart';
 import '../models/cart.dart';
 import '../models/product.dart';

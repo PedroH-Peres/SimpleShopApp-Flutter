@@ -3,7 +3,7 @@ import '../models/product.dart';
 final DUMMY_PRODUCTS = [
     Product(
       id: 'p1',
-      name: 'Red Shirt',
+      name: 'Camisa Vermelha',
       description: 'A red shirt - it is pretty red!',
       price: 29.99,
       imageUrl:
@@ -33,4 +33,5 @@ final DUMMY_PRODUCTS = [
       imageUrl:
           'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     ),
+    
   ];
