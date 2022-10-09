@@ -171,7 +171,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   height: 100,
                   margin: const EdgeInsets.only(top: 10, left: 10, ),
                   decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
-                  child: _imageUrlController.text.isEmpty ? Text('Informe a Url') : FittedBox(child: Image.network(_imageUrlController.text), fit: BoxFit.cover,),
+                  child: _imageUrlController.text.isEmpty ? Text('Informe a Url') 
+                  : Container(width: 100, height: 100,child: FittedBox(child: Image.network(_imageUrlController.text), fit: BoxFit.cover,)),
                   alignment: Alignment.center,
                 )
               ]
