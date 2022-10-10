@@ -24,6 +24,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
   final _formKey = GlobalKey<FormState>();
   final _formData = <String, Object>{};
 
+  bool isLoading = false;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();  
@@ -78,9 +80,25 @@ class _ProductFormPageState extends State<ProductFormPage> {
     }
 
     _formKey.currentState?.save();
+    setState(() {
+      isLoading = true;
+    });
     
-      Provider.of<ProductList>(context, listen: false).saveProduct(_formData);
+    Provider.of<ProductList>(context, listen: false).saveProduct(_formData).catchError((error){
+      return showDialog<void>(context: context, builder: (ctx) => AlertDialog(
+        title: Text("Erro"),
+        content: Text("Contate o suporte. ERRO[001]"),
+        actions: [
+          TextButton(onPressed: ()=> Navigator.of(context).pop(), child: Text("Ok"))
+        ],
+      ));
+    })
+    .then((value) {
+      setState(() {
+        isLoading = false;
+      });
       Navigator.of(context).pop();
+    });
   }
 
   @override
@@ -91,7 +109,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
         IconButton(onPressed: _submitForm, icon: Icon(Icons.save))
        ],
       ),
-      body: Padding( padding: EdgeInsets.all(20),
+      body: isLoading ? Center(child: CircularProgressIndicator()) : Padding( padding: EdgeInsets.all(20),
         child: Form(
           key: _formKey,
           child: ListView(children: [
@@ -172,7 +190,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   margin: const EdgeInsets.only(top: 10, left: 10, ),
                   decoration: BoxDecoration(border: Border.all(color: Colors.grey, width: 1)),
                   child: _imageUrlController.text.isEmpty ? Text('Informe a Url') 
-                  : Container(width: 100, height: 100,child: FittedBox(child: Image.network(_imageUrlController.text), fit: BoxFit.cover,)),
+                  : Image.network(_imageUrlController.text),
                   alignment: Alignment.center,
                 )
               ]
