@@ -72,7 +72,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     return isValidImageUrl && endsWithFile;
   }
 
-  void _submitForm(){
+  Future<void> _submitForm() async{
     final isValid = _formKey.currentState?.validate() ?? false;
 
     if(!isValid){
@@ -84,21 +84,23 @@ class _ProductFormPageState extends State<ProductFormPage> {
       isLoading = true;
     });
     
-    Provider.of<ProductList>(context, listen: false).saveProduct(_formData).catchError((error){
-      return showDialog<void>(context: context, builder: (ctx) => AlertDialog(
+    try{
+      await Provider.of<ProductList>(context, listen: false).saveProduct(_formData);
+      Navigator.of(context).pop();
+    }catch(error){
+      await showDialog<void>(context: context, builder: (ctx) => AlertDialog(
         title: Text("Erro"),
         content: Text("Contate o suporte. ERRO[001]"),
         actions: [
           TextButton(onPressed: ()=> Navigator.of(context).pop(), child: Text("Ok"))
         ],
       ));
-    })
-    .then((value) {
+    }finally{
       setState(() {
         isLoading = false;
       });
-      Navigator.of(context).pop();
-    });
+    }
+  
   }
 
   @override
