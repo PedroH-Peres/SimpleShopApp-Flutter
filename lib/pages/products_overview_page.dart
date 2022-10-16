@@ -2,16 +2,16 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/components/app_drawer.dart';
-import 'package:shop/models/product_list.dart';
 
 
+import '../components/app_drawer.dart';
 import '../components/badge.dart';
 import '../components/product_grid.dart';
 import '../components/product_grid_item.dart';
 import '../data/dummy_data.dart';
 import '../models/cart.dart';
 import '../models/product.dart';
+import '../models/product_list.dart';
 import '../utils/app_routes.dart';
 enum FilterOptions {
   Favorite,
@@ -31,12 +31,18 @@ class ProductsOverviewPage extends StatefulWidget {
 class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
 
   bool _showFavoriteOnly = false;
+  bool isLoading = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<ProductList>(context, listen: false).loadProducts();
+    isLoading = true;
+    Provider.of<ProductList>(context, listen: false).loadProducts().then((value) {
+      setState(() {
+        isLoading = false;
+      });
+    });
   }
 
   @override
@@ -75,7 +81,7 @@ class _ProductsOverviewPageState extends State<ProductsOverviewPage> {
           )
         ],
       ),
-      body: ProductGrid(_showFavoriteOnly),
+      body: isLoading ? Center(child: CircularProgressIndicator()) : ProductGrid(_showFavoriteOnly),
       drawer: AppDrawer(),
     );
   }

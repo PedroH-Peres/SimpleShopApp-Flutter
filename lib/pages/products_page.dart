@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/components/app_drawer.dart';
-import 'package:shop/components/product_item.dart';
-import 'package:shop/models/product_list.dart';
-import 'package:shop/utils/app_routes.dart';
+
+import '../components/app_drawer.dart';
+import '../components/product_item.dart';
+import '../models/product_list.dart';
+import '../utils/app_routes.dart';
+
 
 class ProductsPage extends StatelessWidget {
   const ProductsPage({super.key,});
+
+  Future<void> _refreshProducts(BuildContext context){
+    return Provider.of<ProductList>(context, listen: false).loadProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,16 +23,18 @@ class ProductsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("Gerenciar produtos"), actions: [IconButton(icon: Icon(Icons.edit),onPressed: (){Navigator.of(context).pushNamed(AppRoutes.PRODUCT_FORM);},)],),
       drawer: AppDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: ListView.builder(
-          itemCount: products.itemsCount,
-          itemBuilder: (context, p) => Column(children: [
-            ProductItem(product: products.items[p]),
-            Divider()
-          ],),
-
-          ),
+      body: RefreshIndicator( onRefresh: () => _refreshProducts(context),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: ListView.builder(
+            itemCount: products.itemsCount,
+            itemBuilder: (context, p) => Column(children: [
+              ProductItem(product: products.items[p]),
+              Divider()
+            ],),
+      
+            ),
+        ),
       ),
     );
   }

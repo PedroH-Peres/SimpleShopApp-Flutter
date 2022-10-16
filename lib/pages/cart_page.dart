@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/components/cart_itemwidget.dart';
 
+import '../components/cart_itemwidget.dart';
 import '../models/cart.dart';
 import '../models/order_list.dart';
 

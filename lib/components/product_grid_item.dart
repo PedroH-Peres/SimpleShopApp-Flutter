@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/pages/product_detail.dart';
-import 'package:shop/utils/app_routes.dart';
 
 import '../models/cart.dart';
 import '../models/product.dart';
+import '../utils/app_routes.dart';
 
 class ProductGridItem extends StatelessWidget {
 

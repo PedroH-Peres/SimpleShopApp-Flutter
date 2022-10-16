@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/utils/app_routes.dart';
+import 'package:simpleshopflutter/exceptions/http_exception.dart';
 
 import '../models/product.dart';
 import '../models/product_list.dart';
+import '../utils/app_routes.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -13,6 +14,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final msg = ScaffoldMessenger.of(context);
     return ListTile(
       title: Text(product.name),
       leading: CircleAvatar(
@@ -42,11 +44,13 @@ class ProductItem extends StatelessWidget {
                       TextButton(onPressed: (){Navigator.of(ctx).pop(false);}, child: Text("Não")),
                       TextButton(onPressed: (){Navigator.of(ctx).pop(true);}, child: Text("Sim"))
                     ],
-                  )).then((value) {
-                    if(value == true){
-                      Provider.of<ProductList>(context,listen: false).removeProduct(product);
-                    }else{
-
+                  )).then((value) async {
+                    if(value ?? false){
+                      try{
+                        await Provider.of<ProductList>(context,listen: false).removeProduct(product);
+                      }catch(error){
+                        msg.showSnackBar(SnackBar(content: Text(error.toString())));
+                      }
                     }
                   });
                 },

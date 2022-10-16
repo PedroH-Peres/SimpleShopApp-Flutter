@@ -1,6 +1,6 @@
 {
-    "name": "shop_app",
-    "short_name": "shop_app",
+    "name": "simpleshopflutter",
+    "short_name": "simpleshopflutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop/models/product_list.dart';
-import 'package:shop/pages/cart_page.dart';
-import 'package:shop/pages/orders_page.dart';
-import 'package:shop/pages/product_detail.dart';
-import 'package:shop/pages/product_form_page.dart';
-import 'package:shop/pages/products_page.dart';
-import 'package:shop/utils/app_routes.dart';
+import 'package:simpleshopflutter/pages/cart_page.dart';
+import 'package:simpleshopflutter/pages/orders_page.dart';
+import 'package:simpleshopflutter/pages/product_detail.dart';
+import 'package:simpleshopflutter/pages/product_form_page.dart';
+import 'package:simpleshopflutter/pages/products_page.dart';
+import 'package:simpleshopflutter/utils/app_routes.dart';
 
 import 'models/cart.dart';
 import 'models/order_list.dart';
+import 'models/product_list.dart';
 import 'pages/products_overview_page.dart';
 
 void main() {

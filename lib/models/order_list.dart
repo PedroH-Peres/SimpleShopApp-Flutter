@@ -1,8 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
-import 'package:shop/models/cart.dart';
-import 'package:shop/models/order.dart';
+
+import 'cart.dart';
+import 'order.dart';
 
 class OrderList with ChangeNotifier{
   List<Order> _items = [] ;
