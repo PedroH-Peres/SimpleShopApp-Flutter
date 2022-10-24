@@ -1,8 +1,13 @@
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-import 'package:flutter/cupertino.dart';
+import '../utils/constants.dart';
 
-class Product with ChangeNotifier{
+class Product with ChangeNotifier {
+
+  final _baseUrl = Constants.productBaseUrl;
   final String id;
   final String name;
   final String description;
@@ -14,13 +19,34 @@ class Product with ChangeNotifier{
     required this.id,
     required this.name,
     required this.description,
+    required this.price,
     required this.imageUrl,
     this.isFavorite = false,
-    required this.price
   });
 
-  void toggleFavorite(){
+  void _toggleFavorite(){
     isFavorite = !isFavorite;
     notifyListeners();
+  }
+
+  Future<void> toggleFavorite() async {
+    _toggleFavorite();
+    try{
+      final response = await http.patch(
+      Uri.parse('$_baseUrl/$id.json'),
+        body: jsonEncode(
+          {
+            "IsFavorite": isFavorite
+          },
+        ),
+    );
+    if(response.statusCode >= 400){
+      _toggleFavorite();
+      
+    }
+    }catch(error){
+      _toggleFavorite();
+    }
+    
   }
 }

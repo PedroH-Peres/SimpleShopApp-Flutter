@@ -7,9 +7,9 @@ class CartItem {
 
   CartItem({
     required this.id,
-    required this.name,
-    required this.price,
     required this.productId,
-    required this.quantity
+    required this.name,
+    required this.quantity,
+    required this.price,
   });
 }

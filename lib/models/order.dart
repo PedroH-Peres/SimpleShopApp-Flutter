@@ -6,13 +6,12 @@ class Order {
   final String id;
   final double total;
   final List<CartItem> products;
-  final DateTime date; 
+  final DateTime date;
 
   Order({
-    required this.date,
     required this.id,
+    required this.total,
     required this.products,
-    required this.total
+    required this.date,
   });
-  
 }
