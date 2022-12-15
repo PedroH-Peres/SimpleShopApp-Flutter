@@ -36,7 +36,7 @@ class ProductList with ChangeNotifier {
           id: productId,
           name: productData['name'],
           description: productData['description'],
-          price: productData['price'],
+          price: double.parse((productData['price']).toStringAsFixed(3)),
           imageUrl: productData['imageUrl'],
           isFavorite: productData['isFavorite'],
         ),
