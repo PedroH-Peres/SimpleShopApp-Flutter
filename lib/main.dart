@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simpleshopflutter/pages/auth_page.dart';
 import 'package:simpleshopflutter/pages/cart_page.dart';
 import 'package:simpleshopflutter/pages/orders_page.dart';
 import 'package:simpleshopflutter/pages/product_detail_page.dart';
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           ),
           fontFamily: 'Lato',
         ),
-        // home: const ProductsOverviewPage(),
+        //home: const ProductsOverviewPage(),
         routes: {
           AppRoutes.home: (ctx) => const ProductsOverviewPage(),
           AppRoutes.productDetail: (ctx) => const ProductDetailPage(),
@@ -50,6 +51,7 @@ class MyApp extends StatelessWidget {
           AppRoutes.orders: (ctx) =>  OrdersPage(),
           AppRoutes.products: (ctx) => const ProductsPage(),
           AppRoutes.productForm: (ctx) => const ProductFormPage(),
+          AppRoutes.auth: (ctx) => const AuthPage()
         },
         debugShowCheckedModeBanner: false,
       ),
