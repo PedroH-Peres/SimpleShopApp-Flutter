@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:simpleshopflutter/components/auth_form.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -29,6 +30,7 @@ class AuthPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
+                  margin: EdgeInsets.only(bottom: 40),
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 70),
                   transform: Matrix4.rotationZ(-8* pi /180),
                   decoration: BoxDecoration(
@@ -41,7 +43,8 @@ class AuthPage extends StatelessWidget {
                     )]
                   ),
                   child: Text("Minha loja", style: TextStyle(fontSize: 45, fontFamily: 'Anton', color: Colors.white),),
-                )
+                ),
+                AuthForm(),
               ],
             ),
           )
