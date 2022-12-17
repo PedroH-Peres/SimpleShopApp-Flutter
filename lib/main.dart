@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:simpleshopflutter/models/auth.dart';
+import 'package:simpleshopflutter/pages/auth_or_home_page.dart';
 import 'package:simpleshopflutter/pages/auth_page.dart';
 import 'package:simpleshopflutter/pages/cart_page.dart';
 import 'package:simpleshopflutter/pages/orders_page.dart';
@@ -48,14 +49,13 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Lato',
         ),
         //home: const ProductsOverviewPage(),
-        routes: {
-          AppRoutes.home: (ctx) => const ProductsOverviewPage(),
+        routes: { 
           AppRoutes.productDetail: (ctx) => const ProductDetailPage(),
           AppRoutes.cart: (ctx) => const CartPage(),
           AppRoutes.orders: (ctx) =>  OrdersPage(),
           AppRoutes.products: (ctx) => const ProductsPage(),
           AppRoutes.productForm: (ctx) => const ProductFormPage(),
-          AppRoutes.auth: (ctx) => const AuthPage()
+          AppRoutes.authOrHome: (ctx) => const AuthOrHomePage()
         },
         debugShowCheckedModeBanner: false,
       ),
