@@ -11,12 +11,15 @@ import '../utils/constants.dart';
 
 
 class ProductList with ChangeNotifier {
+  String _token;
   final _baseUrl = Constants.productBaseUrl;
-  final List<Product> _items = [];
+  List<Product> _items = [];
 
   List<Product> get items => [..._items];
   List<Product> get favoriteItems =>
       _items.where((prod) => prod.isFavorite).toList();
+
+      ProductList(this._token, this._items);
 
   int get itemsCount {
     return _items.length;
@@ -26,7 +29,7 @@ class ProductList with ChangeNotifier {
     _items.clear();
 
     final response = await http.get(
-      Uri.parse('$_baseUrl.json'),
+      Uri.parse('${Constants.productBaseUrl}.json?auth=$_token'),
     );
     if (response.body == 'null') return;
     Map<String, dynamic> data = jsonDecode(response.body);
