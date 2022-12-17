@@ -3,6 +3,7 @@ import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:simpleshopflutter/exceptions/auth_exception.dart';
 
 class Auth with ChangeNotifier{
 
@@ -18,14 +19,19 @@ class Auth with ChangeNotifier{
         'returnSecureToken': true,
       })
     );
-    print(jsonDecode(response.body));
+
+    final body = jsonDecode(response.body);
+    if(body['error'] != null){
+      throw AuthException(body['error']['message']);
+    }
+    print(body);
   }
   
   Future<void> signup(String email, String password) async{
-    _authenticate(email, password, 'signUp');
+    return _authenticate(email, password, 'signUp');
   }
 
   Future<void> singin(String email, String password) async{
-    _authenticate(email, password, 'signInWithPassword');
+    return _authenticate(email, password, 'signInWithPassword');
   }
 }
