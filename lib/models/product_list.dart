@@ -41,7 +41,6 @@ class ProductList with ChangeNotifier {
           description: productData['description'],
           price: double.parse((productData['price']).toStringAsFixed(3)),
           imageUrl: productData['imageUrl'],
-          isFavorite: productData['isFavorite'],
         ),
       );
     });
@@ -75,7 +74,6 @@ class ProductList with ChangeNotifier {
           "description": product.description,
           "price": product.price,
           "imageUrl": product.imageUrl,
-          "isFavorite": product.isFavorite,
         },
       ),
     );
@@ -87,7 +85,6 @@ class ProductList with ChangeNotifier {
       description: product.description,
       price: product.price,
       imageUrl: product.imageUrl,
-      isFavorite: product.isFavorite,
     ));
     notifyListeners();
   }
@@ -133,22 +130,3 @@ class ProductList with ChangeNotifier {
     }
   }
 }
-
-// bool _showFavoriteOnly = false;
-
-//   List<Product> get items {
-//     if (_showFavoriteOnly) {
-//       return _items.where((prod) => prod.isFavorite).toList();
-//     }
-//     return [..._items];
-//   }
-
-//   void showFavoriteOnly() {
-//     _showFavoriteOnly = true;
-//     notifyListeners();
-//   }
-
-//   void showAll() {
-//     _showFavoriteOnly = false;
-//     notifyListeners();
-//   }

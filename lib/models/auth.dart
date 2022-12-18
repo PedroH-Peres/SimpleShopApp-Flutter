@@ -8,7 +8,7 @@ import 'package:simpleshopflutter/exceptions/auth_exception.dart';
 class Auth with ChangeNotifier{
   String? _token;
   String? _email;
-  String? _uid;
+  String? _userid;
   DateTime? _expiryDate;
 
   bool get isAuth{
@@ -24,8 +24,8 @@ class Auth with ChangeNotifier{
     return isAuth ? _email : null;
   }
 
-  String? get uid{
-    return isAuth ? _uid : null;
+  String? get userid{
+    return isAuth ? _userid : null;
   }
 
   static const _url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCDeLNHyZa6sU2eLKg_SWW5zCpEktIOA7I';
@@ -49,7 +49,7 @@ class Auth with ChangeNotifier{
     }else{
       _token = body['idToken'];
       _email = body['email'];
-      _uid = body['localId'];
+      _userid = body['localId'];
       _expiryDate = DateTime.now().add(
         Duration(seconds: int.parse(body['expiresIn']))
       );
