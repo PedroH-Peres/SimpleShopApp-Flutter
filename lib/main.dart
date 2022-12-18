@@ -12,6 +12,7 @@ import 'package:simpleshopflutter/pages/products_page.dart';
 import 'package:simpleshopflutter/utils/app_routes.dart';
 
 import 'models/cart.dart';
+import 'models/order.dart';
 import 'models/order_list.dart';
 import 'models/product_list.dart';
 
@@ -35,11 +36,14 @@ class MyApp extends StatelessWidget {
             return ProductList(auth.token ?? '', previous?.items ?? []);
           },
         ),
-        ChangeNotifierProvider(
-          create: (_) => Cart(),
+        ChangeNotifierProxyProvider<Auth, OrderList>(
+          create: (_) => OrderList('', []),
+          update: (ctx, auth, previous){
+            return OrderList(auth.token ??'', previous?.items ?? []);
+          },
         ),
         ChangeNotifierProvider(
-          create: (_) => OrderList(),
+          create: (_) => Cart(),
         ),
       ],
       child: MaterialApp(
