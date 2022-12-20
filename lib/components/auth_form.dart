@@ -1,7 +1,6 @@
-import 'dart:html';
+
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:provider/provider.dart';
 import 'package:simpleshopflutter/exceptions/auth_exception.dart';
 
@@ -29,14 +28,18 @@ class _AuthFormState extends State<AuthForm> with SingleTickerProviderStateMixin
   };
 
   AnimationController? _controller;
-  Animation<Size>? _heightAnimation;
+  Animation<double>? _opacityAnimation;
+  Animation<Offset>? _slideAnimation;
   
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 250));
-    _heightAnimation = Tween(begin: Size(double.infinity, 310), end: Size(double.infinity, 400)).animate(
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _opacityAnimation = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _controller!, curve: Curves.linear)
+    );
+    _slideAnimation = Tween(begin: Offset(0, -1.5), end: Offset(0,0)).animate(
       CurvedAnimation(parent: _controller!, curve: Curves.linear)
     );
   
@@ -145,19 +148,34 @@ class _AuthFormState extends State<AuthForm> with SingleTickerProviderStateMixin
                   return null;
                 },
               ),
-
-              if(_isSignup())       
-                TextFormField(
-                decoration: const InputDecoration(labelText: 'Confirmar senha'),
-                keyboardType: TextInputType.emailAddress,
-                obscureText: true,
-                validator: (_senha){
-                  final password = _senha ?? '';
-                  if(password != _passwordController.text){
-                    return 'Senhas informadas não são iguais';
-                  }
-                },
+      
+              AnimatedContainer(
+                constraints: BoxConstraints(
+                  minHeight: _isLogin() ?0 : 60,
+                  maxHeight: _isLogin() ? 0 : 120
                 ),
+                duration: Duration(milliseconds: 300),
+                curve: Curves.linear,
+                child: FadeTransition(
+                  opacity: _opacityAnimation!,
+                  child: SlideTransition(
+                    position: _slideAnimation!,
+                    child: TextFormField(
+                      decoration: const InputDecoration(labelText: 'Confirmar senha'),
+                      keyboardType: TextInputType.emailAddress,
+                      obscureText: true,
+                      validator: _isLogin()
+                      ? null
+                      :(_senha){
+                        final password = _senha ?? '';
+                        if(password != _passwordController.text){
+                          return 'Senhas informadas não são iguais';
+                        }
+                      },
+                    ),
+                  ),
+                ),
+              ),
 
               SizedBox(height: 20,),
 

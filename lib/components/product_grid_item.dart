@@ -57,8 +57,9 @@ class ProductGridItem extends StatelessWidget {
           ),
         ),
         child: GestureDetector(
-          child: Image.network(
-            product.imageUrl,
+          child: FadeInImage(
+            placeholder: AssetImage('assets/images/product-placeholder.png'),
+            image: NetworkImage(product.imageUrl),
             fit: BoxFit.cover,
           ),
           onTap: () {
@@ -72,3 +73,8 @@ class ProductGridItem extends StatelessWidget {
     );
   }
 }
+
+/*child: Image.network(
+          product.imageUrl,
+          fit: BoxFit.cover,
+          ),*/

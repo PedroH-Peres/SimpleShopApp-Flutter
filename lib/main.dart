@@ -11,7 +11,6 @@ import 'package:simpleshopflutter/utils/app_routes.dart';
 import 'models/cart.dart';
 import 'models/order_list.dart';
 import 'models/product_list.dart';
-
 void main() {
   runApp(const MyApp());
 }
