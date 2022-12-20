@@ -8,6 +8,7 @@ import 'package:simpleshopflutter/pages/product_detail_page.dart';
 import 'package:simpleshopflutter/pages/product_form_page.dart';
 import 'package:simpleshopflutter/pages/products_page.dart';
 import 'package:simpleshopflutter/utils/app_routes.dart';
+import 'package:simpleshopflutter/utils/custom_route.dart';
 import 'models/cart.dart';
 import 'models/order_list.dart';
 import 'models/product_list.dart';
@@ -49,6 +50,12 @@ class MyApp extends StatelessWidget {
             secondary: Colors.deepOrange,
           ),
           fontFamily: 'Lato',
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CustomPageTransitionBuilder(),
+              TargetPlatform.iOS: CustomPageTransitionBuilder(),
+            }
+          )
         ),
         //home: const ProductsOverviewPage(),
         routes: { 

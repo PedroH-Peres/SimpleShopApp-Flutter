@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:simpleshopflutter/pages/orders_page.dart';
+import 'package:simpleshopflutter/utils/custom_route.dart';
 
 
 import '../models/auth.dart';
@@ -33,7 +35,7 @@ class AppDrawer extends StatelessWidget {
             title: const Text('Pedidos'),
             onTap: () {
               Navigator.of(context).pushReplacementNamed(
-                AppRoutes.orders,
+                AppRoutes.orders
               );
             },
           ),
