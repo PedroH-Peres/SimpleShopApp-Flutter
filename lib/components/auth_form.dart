@@ -39,8 +39,6 @@ class _AuthFormState extends State<AuthForm> with SingleTickerProviderStateMixin
     _heightAnimation = Tween(begin: Size(double.infinity, 310), end: Size(double.infinity, 400)).animate(
       CurvedAnimation(parent: _controller!, curve: Curves.linear)
     );
-
-    _heightAnimation?.addListener(() => setState(() {}));
   
   }
 
@@ -108,12 +106,14 @@ class _AuthFormState extends State<AuthForm> with SingleTickerProviderStateMixin
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 8,
-      child: Container(
-        //height: _isLogin() ? 310 : 400,
-        height: _heightAnimation?.value.height ?? (_isLogin() ? 310 : 400),
-        width: device_size.width*0.75,
-        padding: const EdgeInsets.all(16),
-        child: Form(
+      child: AnimatedContainer(
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeIn,
+          height: _isLogin() ? 310 : 400,
+          //height: _heightAnimation?.value.height ?? (_isLogin() ? 310 : 400),
+          width: device_size.width*0.75,
+          padding: const EdgeInsets.all(16),
+          child: Form(
           key: _formKey,
           child: Column(
             children: [
