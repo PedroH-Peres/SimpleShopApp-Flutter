@@ -1,8 +1,11 @@
 class Constants {
   static const userFavoriteUrl =
-      'https://shop-dfab8-default-rtdb.firebaseio.com/userFavorite';
+      //Url do banco de dados para os favoritos do usuario: ex: '.../userFavorites'
+      '';
   static const productBaseUrl =
-      'https://shop-dfab8-default-rtdb.firebaseio.com/products';
+      //Url do banco de dados para os produtos: ex: '.../products'
+      '';
   static const orderBaseUrl =
-      'https://shop-dfab8-default-rtdb.firebaseio.com/orders';
+      //Url do banco de dados para os pedidos: ex: '.../orders'
+      '';
 }
