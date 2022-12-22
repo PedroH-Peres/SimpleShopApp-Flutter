@@ -32,10 +32,10 @@ class Auth with ChangeNotifier{
     return isAuth ? _userid : null;
   }
 
-  static const _url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCDeLNHyZa6sU2eLKg_SWW5zCpEktIOA7I';
+  static const _url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCbFEPfZGCvqlZLZFbNjl71riXD9NWH7y4';
   
   Future<void> _authenticate(String email, String password, String urlFragment) async{
-    final url = 'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyCDeLNHyZa6sU2eLKg_SWW5zCpEktIOA7I';
+    final url = 'https://identitytoolkit.googleapis.com/v1/accounts:$urlFragment?key=AIzaSyCbFEPfZGCvqlZLZFbNjl71riXD9NWH7y4';
     final response = await http.post(
       Uri.parse(url),
       body: jsonEncode({

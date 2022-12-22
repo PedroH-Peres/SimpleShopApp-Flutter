@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Shop App',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: Colors.purple,
