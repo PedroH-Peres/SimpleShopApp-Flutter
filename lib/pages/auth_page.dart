@@ -1,3 +1,4 @@
+import 'dart:js_util';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -45,6 +46,8 @@ class AuthPage extends StatelessWidget {
                   child: Text("Minha loja", style: TextStyle(fontSize: 45, fontFamily: 'Anton', color: Colors.white),),
                 ),
                 AuthForm(),
+                Divider(),
+                Text("Feito por Pedro H. Peres - Curso Cod3r")
               ],
             ),
           )
