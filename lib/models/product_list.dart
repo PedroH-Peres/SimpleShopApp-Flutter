@@ -38,7 +38,7 @@ class ProductList with ChangeNotifier {
       Uri.parse('${Constants.userFavoriteUrl}/$_userid.json?auth=$_token')
     );
 
-    Map<String, dynamic> favData = favResponse.body == null ? {} : jsonDecode(favResponse.body);
+    Map<String, dynamic> favData = favResponse.body == 'null' ? {} : jsonDecode(favResponse.body);
 
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((productId, productData) {
